@@ -49,10 +49,14 @@ workflows:
       - test:
           requires:
             - build
-      - deploy:
+      - deploy-approval:
+          type: approval
           requires:
             - build
             - test
           filters:
             branches:
               only: master
+      - deploy:
+          requires:
+            - deploy-approval
