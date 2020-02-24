@@ -7,7 +7,8 @@ jobs:
     steps:
       - checkout
       - restore_cache: # 追加
-          key: yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          keys:
+            - yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install dependencies
           command: yarn
